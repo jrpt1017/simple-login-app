@@ -1,19 +1,9 @@
 import React from "react";
-import UserItem from "../../components/UserItem";
 import { Grid } from "@mui/material";
+import UserList from "../../components/UserList";
 
 const dashboard = ({ users }) => {
-  return (
-    <Grid container spacing={3} sx={{ padding: 8 }}>
-      {users.slice(0, 1).map((userItem) => {
-        return (
-          <React.Fragment key={userItem.id}>
-            <UserItem user={userItem} />
-          </React.Fragment>
-        );
-      })}
-    </Grid>
-  );
+  return <UserList users={users} />;
 };
 
 export const getStaticProps = async () => {

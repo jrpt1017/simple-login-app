@@ -34,7 +34,7 @@ const userSlice = createSlice({
     logInUser: (state, action) => {
       (state.isLoggedIn = true), (state.user = action.payload);
     },
-    logOutUser: () => {
+    logOutUser: (state) => {
       (state.isLoggedIn = false), (state.user = {});
     },
   },

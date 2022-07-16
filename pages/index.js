@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import {
@@ -17,13 +17,13 @@ import { logInUser, userDetails } from "../redux/slices";
 
 export default function Home() {
   const { register, handleSubmit } = useForm();
-  const history = useHistory();
+  const router = useRouter();
   const dispatch = useDispatch();
   const userInfo = useSelector(userDetails);
 
   const onSubmit = (data) => {
     dispatch(logInUser(data));
-    history.push("/dashboard");
+    router.push("/dashboard");
   };
 
   return (
