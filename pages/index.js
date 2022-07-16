@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import Link from "next/link";
 import Head from "next/head";
 import {
   Box,
@@ -13,6 +15,9 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <Box>
       <Head>
@@ -24,14 +29,14 @@ export default function Home() {
       <Typography variant="h3" align="center">
         Register Account:
       </Typography>
-      <Box>
-        <Paper
-          variant="outlined"
-          sx={{
-            margin: "auto",
-            width: 750,
-          }}
-        >
+      <Paper
+        variant="outlined"
+        sx={{
+          margin: "auto",
+          width: 750,
+        }}
+      >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Typography
             sx={{
               backgroundColor: "#241f1f80",
@@ -52,13 +57,25 @@ export default function Home() {
             }}
           >
             <Grid item>
-              <TextField size="small" placeholder="Name" />
+              <TextField
+                size="small"
+                placeholder="Name"
+                {...register("name")}
+              />
             </Grid>
             <Grid item>
-              <TextField size="small" placeholder="Username" />
+              <TextField
+                size="small"
+                placeholder="Username"
+                {...register("username")}
+              />
             </Grid>
             <Grid item>
-              <TextField size="small" placeholder="Email" />
+              <TextField
+                size="small"
+                placeholder="Email"
+                {...register("email")}
+              />
             </Grid>
           </Grid>
           <Divider
@@ -90,20 +107,40 @@ export default function Home() {
               <TextField size="small" placeholder="Street" />
             </Grid>
             <Grid item xs={4}>
-              <TextField size="small" placeholder="House number" />
+              <TextField
+                size="small"
+                placeholder="House number"
+                {...register("houseNumber")}
+              />
             </Grid>
             <Grid item xs={4}>
-              <TextField size="small" placeholder="City" />
+              <TextField
+                size="small"
+                placeholder="City"
+                {...register("city")}
+              />
             </Grid>
             <Grid item container>
               <Grid item xs={4}>
-                <TextField size="small" placeholder="Zip code" />
+                <TextField
+                  size="small"
+                  placeholder="Zip code"
+                  {...register("zipCode")}
+                />
               </Grid>
               <Grid item xs={4}>
-                <TextField size="small" placeholder="Contact No." />
+                <TextField
+                  size="small"
+                  placeholder="Contact No."
+                  {...register("contactNumber")}
+                />
               </Grid>
               <Grid item xs={4}>
-                <TextField size="small" placeholder="Website" />
+                <TextField
+                  size="small"
+                  placeholder="Website"
+                  {...register("website")}
+                />
               </Grid>
             </Grid>
           </Grid>
@@ -133,13 +170,21 @@ export default function Home() {
             }}
           >
             <Grid item xs={4}>
-              <TextField size="small" placeholder="Name" />
+              <TextField
+                size="small"
+                placeholder="Name"
+                {...register("companyName")}
+              />
             </Grid>
             <Grid item xs={4}>
-              <TextField size="small" placeholder="Catchphrase" />
+              <TextField
+                size="small"
+                placeholder="Catchphrase"
+                {...register("catchphrase")}
+              />
             </Grid>
             <Grid item xs={4}>
-              <TextField size="small" placeholder="BS" />
+              <TextField size="small" placeholder="BS" {...register("bs")} />
             </Grid>
           </Grid>
 
@@ -163,18 +208,21 @@ export default function Home() {
             >
               Clear form
             </Button>
-            <Button
-              disableElevation
-              variant="contained"
-              sx={{
-                textTransform: "none",
-              }}
-            >
-              Submit
-            </Button>
+            <Link href="/dashboard">
+              <Button
+                disableElevation
+                variant="contained"
+                sx={{
+                  textTransform: "none",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
+            </Link>
           </Box>
-        </Paper>
-      </Box>
+        </form>
+      </Paper>
     </Box>
   );
 }
