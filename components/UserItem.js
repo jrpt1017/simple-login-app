@@ -20,7 +20,7 @@ const UserItem = ({ user }) => {
             {user.username}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
+            {user.email}
           </Typography>
           <Typography variant="body2">
             well meaning and kindly.

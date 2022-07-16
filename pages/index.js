@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import Head from "next/head";
@@ -11,12 +13,18 @@ import {
   Grid,
   Divider,
 } from "@mui/material";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import { logInUser, userDetails } from "../redux/slices";
 
 export default function Home() {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const userInfo = useSelector(userDetails);
+
+  const onSubmit = (data) => {
+    dispatch(logInUser(data));
+    history.push("/dashboard");
+  };
 
   return (
     <Box>
@@ -208,18 +216,16 @@ export default function Home() {
             >
               Clear form
             </Button>
-            <Link href="/dashboard">
-              <Button
-                disableElevation
-                variant="contained"
-                sx={{
-                  textTransform: "none",
-                }}
-                type="submit"
-              >
-                Submit
-              </Button>
-            </Link>
+            <Button
+              disableElevation
+              variant="contained"
+              sx={{
+                textTransform: "none",
+              }}
+              type="submit"
+            >
+              Submit
+            </Button>
           </Box>
         </form>
       </Paper>
