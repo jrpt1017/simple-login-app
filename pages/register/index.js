@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Register from "../../components/Register";
 
 const register = () => {
-  return (
-    <div>sample</div>
-  )
-}
+  return <Register />;
+};
 
 export default register;

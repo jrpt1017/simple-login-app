@@ -13,7 +13,7 @@ const UserList = ({ users }) => {
 
   const handleOnClick = () => {
     dispatch(logOutUser());
-    router.push("/");
+    router.push("/register");
   };
   return (
     <>
@@ -41,7 +41,6 @@ const UserList = ({ users }) => {
           margin: "auto",
           display: "block",
           marginTop: 10,
-          // width: "30%",
           padding: 1.5,
         }}
         color="error"

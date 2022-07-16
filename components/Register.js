@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import Head from "next/head";
 import {
   Box,
@@ -15,15 +14,29 @@ import {
 } from "@mui/material";
 import { logInUser, userDetails } from "../redux/slices";
 
-export default function Home() {
-  const { register, handleSubmit } = useForm();
+const Register = () => {
+  const { register, handleSubmit, reset, watch } = useForm();
   const router = useRouter();
   const dispatch = useDispatch();
-  const userInfo = useSelector(userDetails);
+  const watchAllFields = watch();
 
   const onSubmit = (data) => {
     dispatch(logInUser(data));
     router.push("/dashboard");
+  };
+
+  const handleResetForm = () => {
+    reset();
+  };
+
+  const isSubmitDisabled = () => {
+    let value = false;
+    Object.keys(watchAllFields).forEach((propertyName) => {
+      if (watchAllFields[propertyName] === "") {
+        value = true;
+      }
+    });
+    return value;
   };
 
   return (
@@ -213,6 +226,7 @@ export default function Home() {
                 textTransform: "none",
               }}
               color="error"
+              onClick={handleResetForm}
             >
               Clear form
             </Button>
@@ -223,6 +237,7 @@ export default function Home() {
                 textTransform: "none",
               }}
               type="submit"
+              disabled={isSubmitDisabled()}
             >
               Submit
             </Button>
@@ -231,4 +246,6 @@ export default function Home() {
       </Paper>
     </Box>
   );
-}
+};
+
+export default Register;

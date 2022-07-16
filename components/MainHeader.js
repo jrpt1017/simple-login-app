@@ -1,36 +1,32 @@
 import React from "react";
-import {
-  Toolbar,
-  AppBar,
-  IconButton,
-  Typography,
-  Box,
-  Button,
-} from "@mui/material";
+import { useRouter } from "next/router";
+import { Toolbar, AppBar, Box, Button } from "@mui/material";
+
 const navItems = ["Login", "Register", "Dashboard"];
 const MainHeader = () => {
+  const router = useRouter();
+
+  const isCurrentRoute = (pageName) => {
+    return router.pathname === `/${String(pageName).toLowerCase()}`;
+  };
+
   return (
     <AppBar component="nav">
       <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          // onClick={handleDrawerToggle}
-          sx={{ mr: 2, display: { sm: "none" } }}
-        ></IconButton>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-        >
-          MUI
-        </Typography>
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
           {navItems.map((item) => (
-            <Button key={item} sx={{ color: "#fff" }}>
-              {item}
-            </Button>
+            <React.Fragment key={item}>
+              <Button
+                key={item}
+                sx={{
+                  color: "#fff",
+                  backgroundColor: isCurrentRoute(item) && "darkblue",
+                }}
+                id={item}
+              >
+                {item}
+              </Button>
+            </React.Fragment>
           ))}
         </Box>
       </Toolbar>

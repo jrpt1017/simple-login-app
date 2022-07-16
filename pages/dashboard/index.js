@@ -1,5 +1,4 @@
 import React from "react";
-import { Grid } from "@mui/material";
 import UserList from "../../components/UserList";
 
 const dashboard = ({ users }) => {

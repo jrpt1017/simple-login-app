@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 
 const UserItem = ({ user }) => {
+  console.log(user.company);
   return (
     <Grid item>
       <Card sx={{ minWidth: 275 }}>
@@ -23,14 +24,18 @@ const UserItem = ({ user }) => {
             {user.email}
           </Typography>
           <Typography variant="body2">
-            well meaning and kindly.
+            Currently employed at {user.company ? user.company.name : ""}
             <br />
-            {'"a benevolent smile"'}
+            <Typography
+              variant="body1"
+              sx={{
+                fontStyle: "italic",
+              }}
+            >
+              {user.company ? user.company.catchPhrase : ""}
+            </Typography>
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
       </Card>
     </Grid>
   );
