@@ -41,7 +41,7 @@ const UserList = ({ users }) => {
           margin: "auto",
           display: "block",
           marginTop: 10,
-          width: "30%",
+          // width: "30%",
           padding: 1.5,
         }}
         color="error"
