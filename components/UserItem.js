@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 
 const UserItem = ({ user }) => {
-  console.log(user.company);
   return (
     <Grid item>
       <Card sx={{ minWidth: 275 }}>
