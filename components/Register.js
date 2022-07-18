@@ -21,7 +21,40 @@ const Register = () => {
   const watchAllFields = watch();
 
   const onSubmit = (data) => {
-    dispatch(logInUser(data));
+    const {
+      street,
+      suite,
+      city,
+      zipcode,
+      companyName,
+      catchPhrase,
+      bs,
+      name,
+      username,
+      email,
+      phone,
+      website,
+    } = data;
+    const formattedData = {
+      id: 11,
+      name,
+      username,
+      email,
+      address: {
+        street,
+        suite,
+        city,
+        zipcode,
+      },
+      phone,
+      website,
+      company: {
+        name: companyName,
+        catchPhrase,
+        bs,
+      },
+    };
+    dispatch(logInUser(formattedData));
     router.push("/dashboard");
   };
 
@@ -125,7 +158,11 @@ const Register = () => {
             }}
           >
             <Grid item xs={4}>
-              <TextField size="small" placeholder="Street" />
+              <TextField
+                size="small"
+                placeholder="Street"
+                {...register("street")}
+              />
             </Grid>
             <Grid item xs={4}>
               <TextField
@@ -146,14 +183,14 @@ const Register = () => {
                 <TextField
                   size="small"
                   placeholder="Zip code"
-                  {...register("zipCode")}
+                  {...register("zipcode")}
                 />
               </Grid>
               <Grid item xs={4}>
                 <TextField
                   size="small"
                   placeholder="Contact No."
-                  {...register("contactNumber")}
+                  {...register("phone")}
                 />
               </Grid>
               <Grid item xs={4}>
@@ -201,7 +238,7 @@ const Register = () => {
               <TextField
                 size="small"
                 placeholder="Catchphrase"
-                {...register("catchphrase")}
+                {...register("catchPhrase")}
               />
             </Grid>
             <Grid item xs={4}>
